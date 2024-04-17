@@ -1,5 +1,5 @@
 from unittest import TestCase
-from Calculator import Calculator
+from tools.Calculator import Calculator
 
 
 class TestCalculator(TestCase):
@@ -16,38 +16,40 @@ class TestCalculator(TestCase):
         )
 
     def test_get_expression_result_error_case_1_not_enough_number_for_operation(self):
-        with self.assertRaises(ValueError) as e:
+        try:
             self.calculator.get_expression_result("1 +")
-            self.assertRaises(ValueError)
+            self.assertFail()
+        except Exception as e:
             self.assertEqual(
                 str(e),
                 "Error: There are not enough numbers to perform the operation",
             )
 
     def test_get_expression_result_error_case_2_division_by_zero(self):
-        with self.assertRaises(ValueError) as e:
-            self.calculator.get_expression_result("1 +")
-            self.assertRaises(ValueError)
+        try:
+            self.calculator.get_expression_result("1 0 /")
+            self.assertFail()
+        except Exception as e:
             self.assertEqual(
                 str(e),
                 "Error: Division by zero",
             )
 
     def test_get_expression_result_error_case_3_invalid_expression(self):
-        # Test invalid expression
-        with self.assertRaises(ValueError) as e:
-            self.calculator.get_expression_result("1 +")
-            self.assertRaises(ValueError)
+        try:
+            self.calculator.get_expression_result("1 2 3 +")
+            self.assertFail()
+        except Exception as e:
             self.assertEqual(
                 str(e),
-                "Error: The expression is not valie",
+                "Error: The expression is not valid",
             )
 
     def test_get_expression_result_error_case_4_invalid_character(self):
-        # Test invalid character
-        with self.assertRaises(ValueError) as e:
+        try:
             self.calculator.get_expression_result("1 3 ~")
-            self.assertRaises(ValueError)
+            self.assertFail()
+        except Exception as e:
             self.assertEqual(
                 str(e),
                 "Error: The character is not valid",
