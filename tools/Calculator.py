@@ -37,6 +37,6 @@ class Calculator:
             expression = expression[1:]
 
         if len(stack) != 1:
-            raise ValueError("Error: The expression is not valie")
+            raise ValueError("Error: The expression is not valid")
 
         return stack[0]

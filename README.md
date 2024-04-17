@@ -2,6 +2,12 @@
 
 ## Commands
 
+Run app
+
+```bash
+uvicorn api:app --reload
+```
+
 run the tests with
 
 ```bash
