@@ -1,12 +1,7 @@
 class Calculator:
-    stack: list
-
-    def __init__(self, stack: None | list[int] = None):
-        if stack is None:
-            stack = []
-        self.stack = stack
-
     def get_expression_result(self, expression: str) -> int:
+        stack = []
+
         # clean space in expression string
         expression = "".join(expression.split(" "))
         # Loop through the expression without spaces
@@ -14,13 +9,15 @@ class Calculator:
             character = expression[0]
 
             if character.isdigit():
-                self.stack.append(int(character))
+                stack.append(int(character))
             elif character in ["+", "-", "*", "/"]:
-                if len(self.stack) < 2:
-                    raise ValueError("Error: The expression is not valid")
+                if len(stack) < 2:
+                    raise ValueError(
+                        "Error: There are not enough numbers to perform the operation"
+                    )
 
-                first_number = self.stack.pop()
-                second_number = self.stack.pop()
+                first_number = stack.pop()
+                second_number = stack.pop()
 
                 if character == "+":
                     one_number_result = second_number + first_number
@@ -33,11 +30,13 @@ class Calculator:
                         raise ValueError("Error: Division by zero")
                     one_number_result = second_number / first_number
 
-                self.stack.append(one_number_result)
+                stack.append(one_number_result)
+            else:
+                raise ValueError("Error: The character is not valid")
 
             expression = expression[1:]
 
-        if len(self.stack) != 1:
+        if len(stack) != 1:
             raise ValueError("Error: The expression is not valie")
 
-        return self.stack[0]
+        return stack[0]
