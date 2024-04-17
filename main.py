@@ -1,4 +1,4 @@
-from tools.Calculator import Calculator
+from object.Calculator import Calculator
 
 
 def test(expression: str) -> int:

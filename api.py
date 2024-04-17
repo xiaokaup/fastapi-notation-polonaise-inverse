@@ -3,9 +3,12 @@ from pydantic.functional_validators import field_validator
 from fastapi import FastAPI, Depends, HTTPException
 from sqlmodel import Session
 
+
+from object.Calculator import Calculator
 from db.engine import create_tables, get_session
 from db.models import ResultModel
-from tools.Calculator import Calculator
+from tools.csv import read_csv_file
+
 
 app = FastAPI()
 
@@ -47,3 +50,16 @@ def calculator(request: calculatarInputSchema, session: Session = Depends(get_se
 def get_results(session: Session = Depends(get_session)):
     result = session.query(ResultModel).all()
     return {"result": [r.value for r in result]}
+
+
+@app.get("/get_csv_data")
+async def get_csv_data():
+    file_path = "username.csv"
+    data = []
+
+    try:
+        result = read_csv_file(file_path)
+        return {"result": result}
+    except Exception as e:
+        return HTTPException(status_code=400, detail=str(e))
+    return data
