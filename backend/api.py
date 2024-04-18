@@ -40,7 +40,6 @@ class calculatarInputSchema(BaseModel):
 @app.post("/calculator")
 def calculator(request: calculatarInputSchema, session: Session = Depends(get_session)):
     try:
-        print("hit /calculator endpoint", request.expression)
         calculator = Calculator()
         result = calculator.get_expression_result(request.expression)
 
