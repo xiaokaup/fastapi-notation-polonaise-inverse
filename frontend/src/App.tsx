@@ -7,6 +7,10 @@ function App() {
   const [expressionResult, setExpressionResult] = React.useState();
   const [errorMessage, setErrorMessage] = React.useState("");
 
+  const [isHistoricalResultsShow, setIsHistoricalResultsShow] =
+    React.useState(false);
+  const [historicalResults, setHistoricalResults] = React.useState([]);
+
   const calculate = () => {
     fetch("http://localhost:8000/calculator/", {
       method: "POST",
@@ -31,6 +35,8 @@ function App() {
         setErrorMessage(error.message);
         console.error(error);
       });
+
+    setIsHistoricalResultsShow(false);
   };
 
   const getHistoricalResults = () => {
@@ -47,13 +53,14 @@ function App() {
           throw new Error(data.detail);
         }
 
-        setExpressionResult(data.result);
-        setErrorMessage("");
+        setHistoricalResults(data.result);
       })
       .catch((error) => {
         setErrorMessage(error.message);
         console.error(error);
       });
+
+    setIsHistoricalResultsShow(true);
   };
 
   return (
@@ -79,6 +86,21 @@ function App() {
         )}
         {errorMessage && <div>{errorMessage}</div>}
       </div>
+      {isHistoricalResultsShow && (
+        <div style={{ marginTop: "2rem" }}>
+          {historicalResults.length > 0 &&
+            historicalResults.map((item: any, index) => {
+              console.log("item", item);
+              return (
+                <div key={`${item}-${item.expression}`}>
+                  <div>
+                    Calculate {index}: {item.expression} = {item.value}
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      )}
     </div>
   );
 }
