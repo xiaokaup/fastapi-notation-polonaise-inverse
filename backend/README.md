@@ -1,4 +1,4 @@
-# fastapi-notation-polonaise-inverse-2
+# fastapi-notation-polonaise-inverse
 
 ## Commands
 

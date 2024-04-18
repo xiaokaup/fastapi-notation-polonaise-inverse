@@ -1,5 +1,5 @@
 from unittest import TestCase
-from object.Calculator import Calculator
+from class_object.Calculator import Calculator
 
 
 class TestCalculator(TestCase):
@@ -14,6 +14,7 @@ class TestCalculator(TestCase):
         self.assertEqual(
             self.calculator.get_expression_result("1 2 + 3 * 4 / 5 +"), 7.25
         )
+        
 
     def test_get_expression_result_error_case_1_not_enough_number_for_operation(self):
         try:

@@ -2,9 +2,15 @@ class Calculator:
     def get_expression_result(self, expression: str) -> int:
         stack = []
 
+        print("expression", expression)
+
         # clean space in expression string
         expression = "".join(expression.split(" "))
         # Loop through the expression without spaces
+        
+        print("expression 2", expression)
+
+        
         while len(expression) > 0:
             character = expression[0]
 
