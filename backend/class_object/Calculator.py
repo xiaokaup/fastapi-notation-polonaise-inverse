@@ -1,20 +1,20 @@
+import re
 class Calculator:
+    def is_valid_integer(self, s):
+        return bool(re.match(r'^-?\d+$', s))
+
     def get_expression_result(self, expression: str) -> int:
         stack = []
 
-        print("expression", expression)
-
         # clean space in expression string
-        expression = "".join(expression.split(" "))
-        # Loop through the expression without spaces
-        
-        print("expression 2", expression)
+        expression_list = [item for item in expression.split(" ") if item != ""]
 
-        
-        while len(expression) > 0:
-            character = expression[0]
+        index = 0
+        length = len(expression_list)
+        while index < length:
+            character = expression_list[0]
 
-            if character.isdigit():
+            if self.is_valid_integer(character):
                 stack.append(int(character))
             elif character in ["+", "-", "*", "/"]:
                 if len(stack) < 2:
@@ -40,7 +40,8 @@ class Calculator:
             else:
                 raise ValueError("Error: The character is not valid")
 
-            expression = expression[1:]
+            expression_list = expression_list[1:]
+            index += 1
 
         if len(stack) != 1:
             raise ValueError("Error: The expression is not valid")
