@@ -30,30 +30,7 @@ Routes:
 - GET http://localhost:8000/get_results/
 - GET http://localhost:8000/get_csv_data
 
-### Test
-
-Test files location: ./backend/tests
-
-```bash
-cd backend
-./test.sh
-```
-
-## Frontend
-
-Endpoint: http://localhost:3000/
-
-## Database
-
-sqlite: ./backend/calculator.db
-
-If you want to clean historical results:
-
-```bash
-rm ./backend/calculator.db
-```
-
-## NPI(notation polonaise inverse) Calculate
+### NPI(notation polonaise inverse) Calculate
 
 we can write the
 
@@ -85,6 +62,29 @@ we can write the
 
 ```text
 -10     -01 +
+```
+
+### Test
+
+Test files location: ./backend/tests
+
+```bash
+cd backend
+./test.sh
+```
+
+## Frontend
+
+Endpoint: http://localhost:3000/
+
+## Database
+
+sqlite: ./backend/calculator.db
+
+If you want to clean historical results:
+
+```bash
+rm ./backend/calculator.db
 ```
 
 ## Author
