@@ -6,7 +6,6 @@ class Calculator:
     def get_expression_result(self, expression: str) -> int:
         stack = []
 
-        # clean space in expression string
         expression_list = [item for item in expression.split(" ") if item != ""]
 
         index = 0
