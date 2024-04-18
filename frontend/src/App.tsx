@@ -23,7 +23,6 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data: ", data);
         if (data.status_code && data.status_code !== 200) {
           throw new Error(data.detail);
         }
@@ -48,7 +47,6 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data: ", data);
         if (data.status_code && data.status_code !== 200) {
           throw new Error(data.detail);
         }
@@ -90,7 +88,6 @@ function App() {
         <div style={{ marginTop: "2rem" }}>
           {historicalResults.length > 0 &&
             historicalResults.map((item: any, index) => {
-              console.log("item", item);
               return (
                 <div key={`${item}-${item.expression}`}>
                   <div>
