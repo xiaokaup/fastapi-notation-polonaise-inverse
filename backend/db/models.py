@@ -10,4 +10,5 @@ class ResultModel(SQLModel, table=True):
         index=True,
         nullable=False,
     )
+    expression: str = Field(nullable=False)
     value: Decimal = Field(nullable=False)
